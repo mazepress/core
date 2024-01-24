@@ -1,5 +1,5 @@
 {
-  "name": "skeleton",
+  "name": "core",
   "description": "A custom WordPress plugin.",
   "license": "MIT",
   "devDependencies": {
@@ -13,14 +13,13 @@
     "npm-run-all": "^4.1"
   },
   "scripts": {
-    "build": "gulp",
-    "fix": "npm-run-all -p fix:scss fix:css fix:js",
+    "build": "npm-run-all gulp fix fix",
+    "gulp": "gulp",
+    "fix": "npm-run-all -p fix:scss fix:css",
     "fix:css": "wp-scripts lint-style 'assets/css/**/*.css' --fix",
     "fix:scss": "wp-scripts lint-style 'assets/scss/**/*.scss' --fix",
-    "fix:js": "wp-scripts lint-js 'assets/js/*.js' --fix",
-    "check": "npm-run-all -p check:scss check:css check:js",
+    "check": "npm-run-all -p check:scss check:css",
     "check:scss": "wp-scripts lint-style 'assets/scss/**/*.scss'",
-    "check:css": "wp-scripts lint-style 'assets/css/**/*.css'",
-    "check:js": "wp-scripts lint-js 'assets/js/*.js'"
+    "check:css": "wp-scripts lint-style 'assets/css/**/*.css'"
   }
 }

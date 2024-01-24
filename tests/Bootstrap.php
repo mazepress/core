@@ -2,7 +2,7 @@
 /**
  * The PhpUnit bootstrap file.
  *
- * @package Mazepress\Skeleton\Tests
+ * @package Mazepress\Core\Tests
  */
 
 // Load the composer autoloader.

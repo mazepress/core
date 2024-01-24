@@ -2,14 +2,12 @@
 /**
  * The main entry class file.
  *
- * @package Mazepress\Skeleton
+ * @package Mazepress\Core
  */
 
 declare(strict_types=1);
 
-namespace Mazepress\Skeleton;
-
-use Mazepress\Skeleton\Packages;
+namespace Mazepress\Core;
 
 /**
  * The Factory class.
@@ -21,7 +19,7 @@ final class Factory {
 	 *
 	 * @var string
 	 */
-	const NAME = 'Skeleton';
+	const NAME = 'Core';
 
 	/**
 	 * The plugin version.
@@ -92,10 +90,22 @@ final class Factory {
 			self::$loaded = true;
 		}
 
-		// Load the dependent packages.
-		( new Packages( $name ) )->load();
+		// Enque scripts and style.
+		add_action( 'admin_enqueue_scripts', array( self::$instance, 'admin_enqueue_scripts' ) );
+	}
 
-		// ToDo - Register all classes.
+	/**
+	 * Admin Enqueue a script
+	 *
+	 * @return void
+	 */
+	public function admin_enqueue_scripts(): void {
+		wp_enqueue_style(
+			'mazepress-core-admin',
+			$this->get_url() . 'assets/css/admin.css',
+			array(),
+			$this->get_version(),
+		);
 	}
 
 	/**
@@ -104,7 +114,8 @@ final class Factory {
 	 * @return string
 	 */
 	public function get_name(): string {
-		return self::NAME;
+		$name = apply_filters( 'mazepress_core_get_name', self::NAME );
+		return (string) $name;
 	}
 
 	/**
@@ -113,7 +124,8 @@ final class Factory {
 	 * @return string
 	 */
 	public function get_version(): string {
-		return self::VERSION;
+		$version = apply_filters( 'mazepress_core_get_version', self::VERSION );
+		return (string) $version;
 	}
 
 	/**

@@ -1,14 +1,47 @@
-# WordPress Plugin - Skeleton
-A custom code template for creating a standards-compliant [WordPress](https://wordpress.org) plugin.
+# WordPress Plugin Package - Core
+A package library for [WordPress](https://wordpress.org) Plugin and Theme development.
 
-### Installation
-Install this plugin into your Wordpress instance by:
+## Installation
+The simplest way to get up and running with this package is using [Composer](http://getcomposer.org/).
+In your `composer.json` file:
 
-1. Download latest plugin archive file from the [Releases](../../releases) page.
-2. Go to your WordPress admin area and visit **Plugins » Add New**.
-3. Click on the **Upload Plugin** button on top of the page and select the plugin archive file.
-4. After you have selected the file, you need to click on the **Install Now** button.
-5. Once installed, go to the **Plugins** page in WordPress admin and activate the installed plugin.
+1. Make sure you have `"minimum-stability": "dev"`
+2. Add this repository url to the `repositories` section as `vcs` type
+3. Add `installer-paths` for this repository
+4. Add `"mazepress/core": "dev-master"` to the require block
+
+```json
+{
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/mazepress/core.git"
+    }
+  ],
+  "require": {
+    "mazepress/core": "dev-master"
+  },
+  "config": {
+    "preferred-install": {
+      "mazepress/core": "dist"
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      "packages/{$name}": [
+        "mazepress/core"
+      ]
+    }
+  }
+}
+```
+Finally, you can simply run the following command for updating the composer:
+
+```sh
+# Update composer dependencies
+$ composer update
+```
 
 ## Development
 Following are the minimum requirements for the development and package dependency management.

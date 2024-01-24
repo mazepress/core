@@ -1,5 +1,5 @@
 {
-  "name": "mazepress/skeleton",
+  "name": "mazepress/core",
   "type": "wordpress-plugin",
   "description": "A custom WordPress plugin.",
   "license": "MIT",
@@ -23,23 +23,23 @@
   },
   "scripts": {
     "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml",
-    "phpcbf": "./vendor/bin/phpcbf src tests skeleton.php",
+    "phpcbf": "./vendor/bin/phpcbf src tests core.php",
     "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 2G",
     "phpunit": "./vendor/bin/phpunit --configuration phpunit.xml",
     "coverage": "./vendor/bin/code-coverage ./build/clover.xml 90",
-    "wp:pot": "./vendor/bin/wp i18n make-pot . ./languages/skeleton.pot --include='src,packages,skeleton.php'",
-    "wp:dist": "./vendor/bin/wp dist-archive . ./../skeleton.zip",
+    "wp:pot": "./vendor/bin/wp i18n make-pot . ./languages/core.pot --include='src,packages,core.php'",
+    "wp:dist": "./vendor/bin/wp dist-archive . ./../core.zip",
     "post-install-cmd": "composer dump-autoload",
     "post-update-cmd": "composer dump-autoload"
   },
   "autoload": {
     "psr-4": {
-      "Mazepress\\Skeleton\\": "src"
+      "Mazepress\\Core\\": "src"
     }
   },
   "autoload-dev": {
 		"psr-4": {
-			"Mazepress\\Skeleton\\Tests\\": "tests"
+			"Mazepress\\Core\\Tests\\": "tests"
 		}
 	},
   "config": {

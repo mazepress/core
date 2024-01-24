@@ -2,15 +2,15 @@
 /**
  * The Factory test class file.
  *
- * @package Mazepress\Skeleton\Tests
+ * @package Mazepress\Core\Tests
  */
 
 declare(strict_types=1);
 
-namespace Mazepress\Skeleton\Tests;
+namespace Mazepress\Core\Tests;
 
 use WP_Mock\Tools\TestCase;
-use Mazepress\Skeleton\Factory;
+use Mazepress\Core\Factory;
 use WP_Mock;
 
 /**

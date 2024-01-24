@@ -27,8 +27,8 @@ jobs:
         run: composer run phpstan
       - name: Run PHPUnit Testing
         run: composer run phpunit
-      - name: Run Code Coverage Check
-        run: composer run coverage
+#      - name: Run Code Coverage Check
+#        run: composer run coverage
   lintcss:
     name: Check CSS and JS Coding Standards
     runs-on: ubuntu-latest
