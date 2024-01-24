@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="./tests/Bootstrap.php" colors="true" stopOnFailure="false" backupGlobals="false" verbose="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory suffix=".php">./src</directory>
+    </include>
+    <report>
+      <clover outputFile="build/clover.xml"/>
+      <crap4j outputFile="build/crap4j.xml"/>
+      <html outputDirectory="build/coverage"/>
+    </report>
+  </coverage>
+  <logging>
+    <junit outputFile="build/phpunit.xml"/>
+  </logging>
+  <testsuites>
+    <testsuite name="phpunit">
+      <directory suffix=".php">./tests</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>

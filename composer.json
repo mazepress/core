@@ -1,0 +1,57 @@
+{
+  "name": "mazepress/skeleton",
+  "type": "wordpress-plugin",
+  "description": "A custom WordPress plugin.",
+  "license": "MIT",
+  "prefer-stable": true,
+	"minimum-stability": "dev",
+  "require": {
+    "php": ">=7.4",
+    "automattic/jetpack-autoloader": "^2.11",
+    "composer/installers": "^2.2"
+  },
+  "require-dev": {
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "wp-cli/i18n-command": "^2.5",
+    "wp-cli/dist-archive-command": "^2.0",
+    "wp-coding-standards/wpcs": "^3.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+    "szepeviktor/phpstan-wordpress": "^1.3",
+    "phpunit/phpunit": "^9.6",
+    "10up/wp_mock": "^1.0",
+    "teqnomaze/code-coverage": "^1.0"
+  },
+  "scripts": {
+    "phpcs": "./vendor/bin/phpcs --standard=phpcs.xml",
+    "phpcbf": "./vendor/bin/phpcbf src tests skeleton.php",
+    "phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 2G",
+    "phpunit": "./vendor/bin/phpunit --configuration phpunit.xml",
+    "coverage": "./vendor/bin/code-coverage ./build/clover.xml 90",
+    "wp:pot": "./vendor/bin/wp i18n make-pot . ./languages/skeleton.pot --include='src,packages,skeleton.php'",
+    "wp:dist": "./vendor/bin/wp dist-archive . ./../skeleton.zip",
+    "post-install-cmd": "composer dump-autoload",
+    "post-update-cmd": "composer dump-autoload"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mazepress\\Skeleton\\": "src"
+    }
+  },
+  "autoload-dev": {
+		"psr-4": {
+			"Mazepress\\Skeleton\\Tests\\": "tests"
+		}
+	},
+  "config": {
+    "optimize-autoloader": true,
+		"sort-packages": true,
+		"platform": {
+			"php": "7.4"
+		},
+    "allow-plugins": {
+      "composer/installers": true,
+      "automattic/jetpack-autoloader": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

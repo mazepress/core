@@ -1,0 +1,17 @@
+{
+	"root": true,
+  "extends": [
+		"plugin:@wordpress/eslint-plugin/esnext"
+	],
+	"env": {
+		"browser": true,
+		"jquery": true,
+		"es6": true
+	},
+	"globals": {
+		"wp": true
+	},
+	"rules": {
+		"object-shorthand": 0
+  }
+}

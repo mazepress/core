@@ -1,0 +1,41 @@
+name: Code Analysis
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lintphp:
+    name: Check PHP Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress
+      - name: Check PHP Coding Standards
+        run: composer run phpcs
+      - name: Check PHP Static Analysis
+        run: composer run phpstan
+      - name: Run PHPUnit Testing
+        run: composer run phpunit
+      - name: Run Code Coverage Check
+        run: composer run coverage
+  lintcss:
+    name: Check CSS and JS Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Node dependencies
+        run: npm install --silent --no-progress
+      - name: Check SASS, CSS and JS Coding Standards
+        run: npm run check

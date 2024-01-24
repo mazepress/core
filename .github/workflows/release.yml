@@ -1,0 +1,52 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+      - name: Setup WP-CLI
+        run: wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+      - name: Change WP-CLI permission
+        run: chmod +x wp-cli.phar
+      - name: Add WP-CLI to path
+        run: sudo mv wp-cli.phar /usr/local/bin/wp
+      - name: Install distribution archive command
+        run: wp package install wp-cli/dist-archive-command
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+      - name: Install Composer dependencies
+        run: composer install --no-dev --prefer-dist --no-progress
+      - name: Create Distribution
+        run: wp dist-archive . ./../skeleton.zip
+      - name: Install Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Create Release Asset
+        id: create-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ../skeleton.zip
+          asset_name: skeleton.zip
+          asset_content_type: application/zip
