@@ -1,7 +1,7 @@
 {
   "name": "mazepress/core",
-  "type": "wordpress-plugin",
-  "description": "A custom WordPress plugin.",
+  "type": "library",
+  "description": "A package library for WordPress plugin and theme development.",
   "license": "MIT",
   "prefer-stable": true,
 	"minimum-stability": "dev",
