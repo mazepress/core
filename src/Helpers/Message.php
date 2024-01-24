@@ -57,16 +57,14 @@ trait Message {
 			add_action(
 				'admin_notices',
 				function () use ( $html ) {
-					// phpcs:ignore WordPress.Security.EscapeOutput
-					echo $html; // @codeCoverageIgnore
+					echo $html; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 			);
 		} else {
 			add_action(
 				'alert_notices',
 				function () use ( $html ) {
-					// phpcs:ignore WordPress.Security.EscapeOutput
-					echo $html; // @codeCoverageIgnore
+					echo $html; // phpcs:ignore WordPress.Security.EscapeOutput
 				}
 			);
 		}
