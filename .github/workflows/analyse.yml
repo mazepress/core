@@ -1,41 +1,41 @@
+# Check coding standards and static code analysis
 name: Code Analysis
 
 on:
+  # Runs on pushes and pull requests targeting the main branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
+  # Check PHP Coding Standards
   lintphp:
-    name: Check PHP Coding Standards
+    name: Analyse PHP
     runs-on: ubuntu-latest
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Validate composer.json and composer.lock
-        run: composer validate --strict
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress
-      - name: Check PHP Coding Standards
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Composer
+        run: |
+          composer config -g github-oauth.github.com ${{ secrets.COMPOSER_AUTH_TOKEN }}
+          composer validate --strict
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Coding Standards
         run: composer run phpcs
-      - name: Check PHP Static Analysis
+
+      - name: Static Analysis
         run: composer run phpstan
-      - name: Run PHPUnit Testing
+
+      - name: PHPUnit Testing
         run: composer run phpunit
-#      - name: Run Code Coverage Check
-#        run: composer run coverage
-  lintcss:
-    name: Check CSS and JS Coding Standards
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Install Node dependencies
-        run: npm install --silent --no-progress
-      - name: Check SASS, CSS and JS Coding Standards
-        run: npm run check
+
+      - name: Coverage Check
+        run: composer run coverage

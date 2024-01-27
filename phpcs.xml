@@ -23,11 +23,6 @@
 	<file>src</file>
 	<file>tests</file>
 
-	<!-- Exclude all files in this directory and the directories below it. -->
-	<exclude-pattern>./packages/*</exclude-pattern>
-	<exclude-pattern>./vendor/*</exclude-pattern>
-	<exclude-pattern>./node_modules/*</exclude-pattern>
-
 	<!--
 	Include the WordPress standard.
 	See https://github.com/WordPress/WordPress-Coding-Standards
@@ -108,7 +103,7 @@
 	For more information, also see:
 	https://github.com/PHPCompatibility/PHPCompatibility
 	-->
-	<config name="testVersion" value="7.3-"/>
+	<config name="testVersion" value="7.4-"/>
 	<rule ref="PHPCompatibilityWP"/>
 
 </ruleset>
