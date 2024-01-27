@@ -12,6 +12,8 @@ namespace Mazepress\Core\Tests;
 
 use WP_Mock\Tools\TestCase;
 use Mazepress\Core\App;
+use Mazepress\Core\Package;
+use Mazepress\Core\PackageInterface;
 
 /**
  * The AppTest class.
@@ -26,17 +28,15 @@ class AppTest extends TestCase {
 	public function test_properties(): void {
 
 		$instance = App::instance();
+		$this->assertInstanceOf( App::class, $instance );
+		$this->assertInstanceOf( Package::class, $instance );
+		$this->assertInstanceOf( PackageInterface::class, $instance );
+
+		// Define the regular expression for SemVer.
+		$semver = '/^\d+\.\d+\.\d+(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/';
 
 		$this->assertEquals( 'Core', $instance->get_name() );
 		$this->assertEquals( 'core', $instance->get_slug() );
-		$this->assertNotEmpty( $instance->get_version() );
-
-		$url = 'http://localhost.com/wp-plugins/core';
-		$this->assertInstanceOf( App::class, $instance->set_url( $url ) );
-		$this->assertEquals( $url, $instance->get_url() );
-
-		$path = '\home\wp-plugin\core';
-		$this->assertInstanceOf( App::class, $instance->set_path( $path ) );
-		$this->assertEquals( $path, $instance->get_path() );
+		$this->assertMatchesRegularExpression( $semver, $instance->get_version() );
 	}
 }

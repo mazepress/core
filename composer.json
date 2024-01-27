@@ -21,7 +21,7 @@
 	"scripts": {
 		"phpcs": "./vendor/bin/phpcs --standard=phpcs.xml",
 		"phpcbf": "./vendor/bin/phpcbf src tests",
-		"phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon",
+		"phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 2G",
 		"phpunit": "./vendor/bin/phpunit --configuration phpunit.xml",
 		"coverage": "./vendor/bin/code-coverage ./build/clover.xml 90",
 		"make:pot": "./vendor/bin/wp i18n make-pot . ./languages/core.pot --include='src'",

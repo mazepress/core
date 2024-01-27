@@ -11,10 +11,14 @@ declare(strict_types=1);
 namespace Mazepress\Core\Tests;
 
 use WP_Mock\Tools\TestCase;
-use Mazepress\Core\Test\Stubs\PackageStub;
+use Mazepress\Core\Package;
+use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Tests\Stubs\HelloWorld;
 
 /**
  * The PackageTest class.
+ *
+ * @group Package
  */
 class PackageTest extends TestCase {
 
@@ -25,18 +29,17 @@ class PackageTest extends TestCase {
 	 */
 	public function test_properties(): void {
 
-		$instance = PackageStub::instance();
+		$instance = HelloWorld::instance();
+		$this->assertInstanceOf( HelloWorld::class, $instance );
+		$this->assertInstanceOf( Package::class, $instance );
+		$this->assertInstanceOf( PackageInterface::class, $instance );
 
-		$this->assertEquals( 'PackageStub', $instance->get_name() );
-		$this->assertEquals( 'package-stub', $instance->get_slug() );
-		$this->assertNotEmpty( $instance->get_version() );
-
-		$url = 'http://localhost.com/wp-plugins/package-stub';
-		$this->assertInstanceOf( PackageStub::class, $instance->set_url( $url ) );
+		$url = 'http://localhost.com/wp-plugins/hello-world';
+		$this->assertInstanceOf( HelloWorld::class, $instance->set_url( $url ) );
 		$this->assertEquals( $url, $instance->get_url() );
 
-		$path = '\home\wp-plugin\package-stub';
-		$this->assertInstanceOf( PackageStub::class, $instance->set_path( $path ) );
+		$path = '\home\wordpress\wp-plugin\hello-world';
+		$this->assertInstanceOf( HelloWorld::class, $instance->set_path( $path ) );
 		$this->assertEquals( $path, $instance->get_path() );
 	}
 }

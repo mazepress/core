@@ -1,35 +1,35 @@
 <?php
 /**
- * The PackageStub class file.
+ * The HelloWorld stub class file.
  *
  * @package    Mazepress\Core
- * @subpackage Test\Stubs
+ * @subpackage Tests\Stubs
  */
 
-declare(strict_types=1);
+namespace Mazepress\Core\Tests\Stubs;
 
-namespace Mazepress\Core\Test\Stubs;
-
-use Mazepress\Core\Package;
+use Mazepress\Core\Plugin;
+use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Tests\Stubs\WorldPackages;
 
 /**
- * The PackageStub class.
+ * The HelloWorld class.
  */
-final class PackageStub extends Package {
+final class HelloWorld extends Plugin {
 
 	/**
 	 * The name.
 	 *
 	 * @var string
 	 */
-	const NAME = 'PackageStub';
+	const NAME = 'HelloWorld';
 
 	/**
 	 * The slug.
 	 *
 	 * @var string
 	 */
-	const SLUG = 'package-stub';
+	const SLUG = 'hello-world';
 
 	/**
 	 * The version.
@@ -57,6 +57,27 @@ final class PackageStub extends Package {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Initialize the package features.
+	 *
+	 * @param PackageInterface $package The package.
+	 *
+	 * @return void
+	 */
+	public static function init( PackageInterface $package = null ): void {
+
+		if ( is_null( $package ) ) {
+			$package = self::$instance;
+		}
+
+		// Load the dependent packages.
+		( new WorldPackages( $package ) )->load();
+
+		// ToDo - Register all classes.
+		// Call sample action.
+		add_action( 'example_action', function () {} );
 	}
 
 	/**

@@ -19,7 +19,7 @@ In your `composer.json` file:
     }
   ],
   "require": {
-    "mazepress/core": "dev-master"
+    "mazepress/core": "dev-main"
   },
   "config": {
     "preferred-install": {
