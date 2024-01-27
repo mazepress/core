@@ -1,14 +1,13 @@
-# WordPress Plugin Package - Core
-A package library for [WordPress](https://wordpress.org) Plugin and Theme development.
+# MazePress - Core
+A custom package library for [WordPress](https://wordpress.org) Plugin and Theme development.
 
 ## Installation
 The simplest way to get up and running with this package is using [Composer](http://getcomposer.org/).
 In your `composer.json` file:
 
-1. Make sure you have `"minimum-stability": "dev"`
-2. Add this repository url to the `repositories` section as `vcs` type
-3. Add `installer-paths` for this repository
-4. Add `"mazepress/core": "dev-master"` to the require block
+1. Add this repository url to the `repositories` section as `vcs` type
+2. Add `installer-paths` for this repository
+3. Run `Composer install mazepress/core`
 
 ```json
 {
@@ -80,37 +79,6 @@ Run unit testing against all the PHP codebase with [PHPUnit](https://phpunit.de)
 ```shell
 composer run phpunit
 ```
-
-Build and compile all the SCSS and JS files.
-```shell
-npm run build
-```
-
-Style fix all the SCSS, CSS and JS files based on [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/)
-```shell
-npm run fix
-```
-
-Check code quality for all the SCSS, CSS and JS files based on [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/)
-```shell
-npm run check
-```
-
-### Structure
-The files and directories structure for this project development is as follows.
-
-| Name | Description |
-| --- | --- |
-| `.github` | Directory contains all the [GitHub Action](https://github.com/features/actions) scripts. |
-| `languages` | Directory contains all language files |
-| `assets` | Directory contains all the SCSS, CSS, JS and Image files |
-| `packages` | Addon packages for the plugin |
-| `src` | Directory contains all the PHP Class files. |
-| `templates` | Directory contains all the PHP and HTML template files. |
-| `tests` | Directory contains all the PHP Test Class files. |
-| `CHANGELOG(.*)` | A log of changes between releases. |
-| `LICENSE(.*)` | Licensing information. |
-| `README(.*)` | Information about the package itself. |
 
 ## Changelog
 All the notable changes to this project will be documented in [CHANGELOG.md](CHANGELOG.md) file.
