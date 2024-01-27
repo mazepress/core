@@ -1,6 +1,6 @@
 <?php
 /**
- * The PackagesInterface class file.
+ * The ServiceProviderInterface class file.
  *
  * @package Mazepress\Core
  */
@@ -10,9 +10,9 @@ declare(strict_types=1);
 namespace Mazepress\Core;
 
 /**
- * The PackagesInterface class.
+ * The ServiceProviderInterface class.
  */
-interface PackagesInterface {
+interface ServiceProviderInterface {
 
 	/**
 	 * Get the package.

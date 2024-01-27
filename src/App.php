@@ -59,6 +59,15 @@ final class App extends Package {
 	}
 
 	/**
+	 * Initialize the package features.
+	 *
+	 * @param PackageInterface $package The package.
+	 *
+	 * @return void
+	 */
+	public static function init( PackageInterface $package = null ): void {}
+
+	/**
 	 * Get the package name.
 	 *
 	 * @return string

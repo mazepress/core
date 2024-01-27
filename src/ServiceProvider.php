@@ -1,6 +1,6 @@
 <?php
 /**
- * The Packages class file.
+ * The ServiceProvider class file.
  *
  * @package Mazepress\Core
  */
@@ -10,12 +10,12 @@ declare(strict_types=1);
 namespace Mazepress\Core;
 
 use Mazepress\Core\PackageInterface;
-use Mazepress\Core\PackagesInterface;
+use Mazepress\Core\ServiceProviderInterface;
 
 /**
- * The Packages class.
+ * The ServiceProvider class.
  */
-abstract class Packages implements PackagesInterface {
+abstract class ServiceProvider implements ServiceProviderInterface {
 
 	/**
 	 * The package.
@@ -68,9 +68,11 @@ abstract class Packages implements PackagesInterface {
 				continue;
 			}
 
+			$instance = call_user_func( array( $class, 'instance' ) );
+
 			// Cal the init function on the package.
-			if ( is_callable( array( $class, 'init' ) ) ) {
-				call_user_func( array( $class::instance(), 'init' ), $this->get_package() );
+			if ( $instance instanceof PackageInterface ) {
+				$instance->init( $this->get_package() );
 			}
 		}
 	}

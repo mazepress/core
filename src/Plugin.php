@@ -26,15 +26,6 @@ abstract class Plugin extends Package implements PluginInterface {
 	protected $description;
 
 	/**
-	 * Initialize the package features.
-	 *
-	 * @param PackageInterface $package The package.
-	 *
-	 * @return void
-	 */
-	abstract public static function init( PackageInterface $package = null ): void;
-
-	/**
 	 * Get the product description.
 	 *
 	 * @return string|null

@@ -38,6 +38,15 @@ abstract class Package implements PackageInterface {
 	abstract public static function instance();
 
 	/**
+	 * Initialize the package features.
+	 *
+	 * @param PackageInterface $package The package.
+	 *
+	 * @return void
+	 */
+	abstract public static function init( PackageInterface $package = null ): void;
+
+	/**
 	 * Get the base url.
 	 *
 	 * @return string|null

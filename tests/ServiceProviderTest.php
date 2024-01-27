@@ -1,6 +1,6 @@
 <?php
 /**
- * The Packages test class file.
+ * The ServiceProvider test class file.
  *
  * @package    Mazepress\Core
  * @subpackage Tests
@@ -11,19 +11,19 @@ declare(strict_types=1);
 namespace Mazepress\Core\Tests;
 
 use WP_Mock\Tools\TestCase;
-use Mazepress\Core\Packages;
+use Mazepress\Core\ServiceProvider;
 use Mazepress\Core\PackageInterface;
-use Mazepress\Core\PackagesInterface;
+use Mazepress\Core\ServiceProviderInterface;
 use Mazepress\Core\Tests\Stubs\HelloWorld;
 use Mazepress\Core\Tests\Stubs\WorldPackages;
 use WP_Mock;
 
 /**
- * The Packages test class.
+ * The ServiceProvider test class.
  *
- * @group Packages
+ * @group ServiceProvider
  */
-class PackagesTest extends TestCase {
+class ServiceProviderTest extends TestCase {
 
 	/**
 	 * Test class properites.
@@ -36,7 +36,8 @@ class PackagesTest extends TestCase {
 		$this->assertInstanceOf( PackageInterface::class, $plugin );
 
 		$wpackages = new WorldPackages( $plugin );
-		$this->assertInstanceOf( PackagesInterface::class, $wpackages );
+		$this->assertInstanceOf( ServiceProvider::class, $wpackages );
+		$this->assertInstanceOf( ServiceProviderInterface::class, $wpackages );
 		$this->assertInstanceOf( PackageInterface::class, $wpackages->get_package() );
 		$this->assertInstanceOf( WorldPackages::class, $wpackages->set_package( $plugin ) );
 	}

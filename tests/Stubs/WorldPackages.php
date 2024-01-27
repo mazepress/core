@@ -1,6 +1,6 @@
 <?php
 /**
- * The Packages class file.
+ * The WorldPackages class file.
  *
  * @package    Mazepress\Core
  * @subpackage Tests\Stubs
@@ -11,12 +11,12 @@ declare(strict_types=1);
 namespace Mazepress\Core\Tests\Stubs;
 
 use Mazepress\Core\PackageInterface;
-use Mazepress\Core\Packages;
+use Mazepress\Core\ServiceProvider;
 
 /**
- * The Packages class.
+ * The WorldPackages class.
  */
-class WorldPackages extends Packages {
+class WorldPackages extends ServiceProvider {
 
 	/**
 	 * Addon packages or plugins.

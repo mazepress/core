@@ -66,4 +66,13 @@ interface PackageInterface {
 	 * @return self
 	 */
 	public function set_path( string $path ): self;
+
+	/**
+	 * Initialize the package features.
+	 *
+	 * @param PackageInterface $package The package.
+	 *
+	 * @return void
+	 */
+	public static function init( PackageInterface $package = null ): void;
 }
