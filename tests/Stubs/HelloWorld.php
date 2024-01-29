@@ -19,7 +19,8 @@ use Mazepress\Core\Tests\Stubs\WorldPackages;
  */
 final class HelloWorld extends Plugin {
 
-	use Template, Cookie;
+	use Template;
+	use Cookie;
 
 	/**
 	 * The name.

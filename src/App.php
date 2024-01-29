@@ -39,13 +39,6 @@ final class App extends Package {
 	const VERSION = '1.0.0';
 
 	/**
-	 * Loaded init function.
-	 *
-	 * @var bool $loaded
-	 */
-	private static $loaded = false;
-
-	/**
 	 * Instance for this class.
 	 *
 	 * @var self|null $instance
