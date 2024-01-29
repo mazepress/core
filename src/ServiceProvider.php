@@ -57,14 +57,17 @@ abstract class ServiceProvider implements ServiceProviderInterface {
 	 */
 	public function load(): void {
 
-		$parent = $this->get_package()->get_name();
+		$vendor_path = 'packages';
+		$package     = $this->get_package();
+		$path        = trailingslashit( (string) $package->get_path() ) . $vendor_path;
+		$url         = trailingslashit( (string) $package->get_url() ) . $vendor_path;
 
 		foreach ( $this->get_packages() as $name => $class ) {
 
 			// If a package is missing, send an admin notice.
 			if ( ! is_callable( array( $class, 'instance' ) ) ) {
 				// Enque admin message.
-				$this->enque_admin_notice( $name, $parent );
+				$this->enque_admin_notice( $name, $package->get_name() );
 				continue;
 			}
 
@@ -72,7 +75,15 @@ abstract class ServiceProvider implements ServiceProviderInterface {
 
 			// Cal the init function on the package.
 			if ( $instance instanceof PackageInterface ) {
-				$instance->init( $this->get_package() );
+
+				$path = trailingslashit( $path ) . $instance->get_slug();
+				$url  = trailingslashit( $url ) . $instance->get_slug();
+
+				$instance
+					->set_path( $path )
+					->set_url( $url )
+					->set_parent( $package )
+					->init();
 			}
 		}
 	}

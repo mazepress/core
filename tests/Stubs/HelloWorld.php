@@ -10,12 +10,16 @@ namespace Mazepress\Core\Tests\Stubs;
 
 use Mazepress\Core\Plugin;
 use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Helper\Template;
+use Mazepress\Core\Helper\Cookie;
 use Mazepress\Core\Tests\Stubs\WorldPackages;
 
 /**
  * The HelloWorld class.
  */
 final class HelloWorld extends Plugin {
+
+	use Template, Cookie;
 
 	/**
 	 * The name.
@@ -78,6 +82,19 @@ final class HelloWorld extends Plugin {
 		// ToDo - Register all classes.
 		// Call sample action.
 		add_action( 'example_action', function () {} );
+	}
+
+	/**
+	 * Initialize the package features.
+	 *
+	 * @param string       $slug The template slug.
+	 * @param string       $name The template name.
+	 * @param array<mixed> $args The additional arguments.
+	 *
+	 * @return void
+	 */
+	public static function get_template_part( string $slug, string $name = null, array $args = array() ): void {
+		self::get_template( self::$instance, $slug, $name, $args );
 	}
 
 	/**

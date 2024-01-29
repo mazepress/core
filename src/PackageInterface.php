@@ -15,6 +15,13 @@ namespace Mazepress\Core;
 interface PackageInterface {
 
 	/**
+	 * Initialize the package features.
+	 *
+	 * @return void
+	 */
+	public static function init(): void;
+
+	/**
 	 * Get the package name.
 	 *
 	 * @return string
@@ -36,6 +43,22 @@ interface PackageInterface {
 	public function get_version(): string;
 
 	/**
+	 * Get the parent.
+	 *
+	 * @return PackageInterface|null
+	 */
+	public function get_parent(): ?PackageInterface;
+
+	/**
+	 * Set the parent.
+	 *
+	 * @param PackageInterface $parent The parent.
+	 *
+	 * @return self
+	 */
+	public function set_parent( PackageInterface $parent ): self;
+
+	/**
 	 * Get the base url.
 	 *
 	 * @return string|null
@@ -45,7 +68,7 @@ interface PackageInterface {
 	/**
 	 * Set the base url.
 	 *
-	 * @param string $url the base url.
+	 * @param string $url The base url.
 	 *
 	 * @return self
 	 */
@@ -61,18 +84,9 @@ interface PackageInterface {
 	/**
 	 * Set the base path.
 	 *
-	 * @param string $path the base path.
+	 * @param string $path The base path.
 	 *
 	 * @return self
 	 */
 	public function set_path( string $path ): self;
-
-	/**
-	 * Initialize the package features.
-	 *
-	 * @param PackageInterface $package The package.
-	 *
-	 * @return void
-	 */
-	public static function init( PackageInterface $package = null ): void;
 }

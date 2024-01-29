@@ -17,6 +17,13 @@ use Mazepress\Core\PackageInterface;
 abstract class Package implements PackageInterface {
 
 	/**
+	 * The parent.
+	 *
+	 * @var PackageInterface $parent
+	 */
+	private $parent;
+
+	/**
 	 * The base url.
 	 *
 	 * @var string|null $url
@@ -40,11 +47,30 @@ abstract class Package implements PackageInterface {
 	/**
 	 * Initialize the package features.
 	 *
-	 * @param PackageInterface $package The package.
-	 *
 	 * @return void
 	 */
-	abstract public static function init( PackageInterface $package = null ): void;
+	abstract public static function init(): void;
+
+	/**
+	 * Get the parent.
+	 *
+	 * @return PackageInterface|null
+	 */
+	public function get_parent(): ?PackageInterface {
+		return $this->parent;
+	}
+
+	/**
+	 * Set the parent.
+	 *
+	 * @param PackageInterface $parent The parent.
+	 *
+	 * @return self
+	 */
+	public function set_parent( PackageInterface $parent ): self {
+		$this->parent = $parent;
+		return $this;
+	}
 
 	/**
 	 * Get the base url.
@@ -58,7 +84,7 @@ abstract class Package implements PackageInterface {
 	/**
 	 * Set the base url.
 	 *
-	 * @param string $url the base url.
+	 * @param string $url The base url.
 	 *
 	 * @return self
 	 */
@@ -79,7 +105,7 @@ abstract class Package implements PackageInterface {
 	/**
 	 * Set the base path.
 	 *
-	 * @param string $path the base path.
+	 * @param string $path The base path.
 	 *
 	 * @return self
 	 */

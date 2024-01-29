@@ -26,6 +26,20 @@ abstract class Plugin extends Package implements PluginInterface {
 	protected $description;
 
 	/**
+	 * If an instance exists, returns it. If not, creates one and retuns it.
+	 *
+	 * @return self
+	 */
+	abstract public static function instance();
+
+	/**
+	 * Initialize the package features.
+	 *
+	 * @return void
+	 */
+	abstract public static function init(): void;
+
+	/**
 	 * Get the product description.
 	 *
 	 * @return string|null
@@ -37,7 +51,7 @@ abstract class Plugin extends Package implements PluginInterface {
 	/**
 	 * Set the product description.
 	 *
-	 * @param  string $description the description.
+	 * @param  string $description The description.
 	 * @return self
 	 */
 	public function set_description( string $description ): self {

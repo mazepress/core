@@ -26,7 +26,7 @@ interface PluginInterface extends PackageInterface {
 	/**
 	 * Set the description.
 	 *
-	 * @param string $description the description.
+	 * @param string $description The description.
 	 *
 	 * @return self
 	 */

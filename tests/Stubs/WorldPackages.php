@@ -12,6 +12,7 @@ namespace Mazepress\Core\Tests\Stubs;
 
 use Mazepress\Core\PackageInterface;
 use Mazepress\Core\ServiceProvider;
+use Mazepress\Core\Tests\Stubs\HelloWorldParent;
 
 /**
  * The WorldPackages class.
@@ -26,7 +27,9 @@ class WorldPackages extends ServiceProvider {
 	 *
 	 * @var string[]
 	 */
-	private $packages = array();
+	private $packages = array(
+		'HelloWorldParent' => 'Mazepress\\Core\\Tests\\Stubs\\HelloWorldParent',
+	);
 
 	/**
 	 * Initiate class.

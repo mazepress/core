@@ -1,35 +1,37 @@
 <?php
 /**
- * The App class file.
+ * The HelloWorldParent stub class file.
  *
- * @package Mazepress\Core
+ * @package    Mazepress\Core
+ * @subpackage Tests\Stubs
  */
 
-declare(strict_types=1);
+namespace Mazepress\Core\Tests\Stubs;
 
-namespace Mazepress\Core;
-
-use Mazepress\Core\Package;
+use Mazepress\Core\Plugin;
+use Mazepress\Core\PackageInterface;
 use Mazepress\Core\Helper\Template;
+use Mazepress\Core\Helper\Cookie;
+use Mazepress\Core\Tests\Stubs\WorldPackages;
 
 /**
- * The App class.
+ * The HelloWorldParent class.
  */
-final class App extends Package {
+final class HelloWorldParent extends Plugin {
 
 	/**
 	 * The name.
 	 *
 	 * @var string
 	 */
-	const NAME = 'Core';
+	const NAME = 'HelloWorldParent';
 
 	/**
 	 * The slug.
 	 *
 	 * @var string
 	 */
-	const SLUG = 'core';
+	const SLUG = 'hello-world-parent';
 
 	/**
 	 * The version.
@@ -37,13 +39,6 @@ final class App extends Package {
 	 * @var string
 	 */
 	const VERSION = '1.0.0';
-
-	/**
-	 * Loaded init function.
-	 *
-	 * @var bool $loaded
-	 */
-	private static $loaded = false;
 
 	/**
 	 * Instance for this class.
@@ -69,9 +64,11 @@ final class App extends Package {
 	/**
 	 * Initialize the package features.
 	 *
+	 * @param PackageInterface $package The package.
+	 *
 	 * @return void
 	 */
-	public static function init(): void {}
+	public static function init( PackageInterface $package = null ): void {}
 
 	/**
 	 * Get the package name.
