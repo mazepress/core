@@ -10,9 +10,8 @@ declare(strict_types=1);
 
 namespace Mazepress\Core\Tests\Stubs;
 
-use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Struct\PackageInterface;
 use Mazepress\Core\ServiceProvider;
-use Mazepress\Core\Tests\Stubs\HelloWorldParent;
 
 /**
  * The WorldPackages class.

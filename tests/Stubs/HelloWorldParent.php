@@ -9,10 +9,7 @@
 namespace Mazepress\Core\Tests\Stubs;
 
 use Mazepress\Core\Plugin;
-use Mazepress\Core\PackageInterface;
-use Mazepress\Core\Helper\Template;
-use Mazepress\Core\Helper\Cookie;
-use Mazepress\Core\Tests\Stubs\WorldPackages;
+use Mazepress\Core\Struct\PackageInterface;
 
 /**
  * The HelloWorldParent class.

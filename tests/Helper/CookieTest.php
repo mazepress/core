@@ -44,16 +44,9 @@ class CookieTest extends TestCase {
 	public function test_set_cookie(): void {
 
 		$instance = HelloWorld::instance();
+		$expire   = time() + 3600; // Expire in 1 hour.
 
-		// Mocking the constants.
-		define( 'COOKIEPATH', '/' );
-		define( 'COOKIE_DOMAIN', 'example.com' );
-
-		$expire = time() + 3600; // Expire in 1 hour.
-
-		// Call the method.
 		$result = $instance::set_cookie( 'test_cookie', 'test_value', $expire );
-
 		$this->assertTrue( $result );
 	}
 
@@ -68,16 +61,10 @@ class CookieTest extends TestCase {
 
 		$instance = HelloWorld::instance();
 
-		// Mocking the constants.
-		define( 'COOKIEPATH', '/' );
-		define( 'COOKIE_DOMAIN', 'example.com' );
-
 		// Mock the $_COOKIE superglobal.
 		$_COOKIE['test_cookie'] = 'test_value';
 
-		// Call the method.
 		$instance::delete_cookie( 'test_cookie' );
-
 		$this->assertArrayNotHasKey( 'test_cookie', $_COOKIE );
 	}
 
@@ -92,10 +79,6 @@ class CookieTest extends TestCase {
 		$result   = $instance->get_cookie( 'test_cookie' );
 
 		$this->assertNull( $result );
-
-		// Mocking the constants.
-		define( 'COOKIEPATH', '/' );
-		define( 'COOKIE_DOMAIN', 'example.com' );
 
 		// Mock the $_COOKIE superglobal.
 		$_COOKIE['test_cookie'] = 'test_value';

@@ -31,8 +31,8 @@ trait Cookie {
 			return false;
 		}
 
-		$path   = constant( 'COOKIEPATH' );
-		$doamin = constant( 'COOKIE_DOMAIN' );
+		$path   = (string) constant( 'COOKIEPATH' );
+		$doamin = (string) constant( 'COOKIE_DOMAIN' );
 
 		return setcookie( $name, $value, $expire, $path, $doamin, $secure );
 	}

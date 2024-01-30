@@ -12,8 +12,8 @@ namespace Mazepress\Core\Tests;
 
 use WP_Mock\Tools\TestCase;
 use Mazepress\Core\ServiceProvider;
-use Mazepress\Core\PackageInterface;
-use Mazepress\Core\ServiceProviderInterface;
+use Mazepress\Core\Struct\PackageInterface;
+use Mazepress\Core\Struct\ServiceProviderInterface;
 use Mazepress\Core\Tests\Stubs\HelloWorld;
 use Mazepress\Core\Tests\Stubs\WorldPackages;
 use WP_Mock;

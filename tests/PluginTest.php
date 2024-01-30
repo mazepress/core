@@ -13,8 +13,8 @@ namespace Mazepress\Core\Tests;
 use WP_Mock\Tools\TestCase;
 use Mazepress\Core\Plugin;
 use Mazepress\Core\Package;
-use Mazepress\Core\PackageInterface;
-use Mazepress\Core\PluginInterface;
+use Mazepress\Core\Struct\PackageInterface;
+use Mazepress\Core\Struct\PluginInterface;
 use Mazepress\Core\Tests\Stubs\HelloWorld;
 
 /**

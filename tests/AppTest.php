@@ -13,7 +13,9 @@ namespace Mazepress\Core\Tests;
 use WP_Mock\Tools\TestCase;
 use Mazepress\Core\App;
 use Mazepress\Core\Package;
-use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Struct\PackageInterface;
+use Mazepress\Core\Message;
+use WP_Mock;
 
 /**
  * The AppTest class.
@@ -38,5 +40,19 @@ class AppTest extends TestCase {
 		$this->assertEquals( 'Core', $instance->get_name() );
 		$this->assertEquals( 'core', $instance->get_slug() );
 		$this->assertMatchesRegularExpression( $semver, $instance->get_version() );
+	}
+
+	/**
+	 * Test load message function.
+	 *
+	 * @return void
+	 */
+	public function test_init(): void {
+
+		$instance = App::instance();
+		$instance->init();
+		$this->assertInstanceOf( Message::class, $instance->message() );
+		$instance->init();
+		WP_Mock::assertHooksAdded();
 	}
 }

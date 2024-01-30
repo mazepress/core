@@ -5,6 +5,7 @@ parameters:
 	paths:
 		- src
 		- tests
+		- templates
 	excludePaths:
 		- packages
 		- vendor

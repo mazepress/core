@@ -33,10 +33,10 @@ class TemplateTest extends TestCase {
 		$instance->set_path( dirname( __DIR__ ) );
 
 		WP_Mock::userFunction( 'get_stylesheet_directory' )
-			->andReturn( '' );
+			->andReturn( 'theme' );
 
 		WP_Mock::userFunction( 'get_template_directory' )
-			->andReturn( '' );
+			->andReturn( 'child-theme' );
 
 		$instance::get_template_part( 'coretest', 'template' );
 

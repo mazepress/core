@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Mazepress\Core;
 
-use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Struct\PackageInterface;
 
 /**
  * The Package class.

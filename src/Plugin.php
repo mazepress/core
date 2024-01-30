@@ -10,8 +10,7 @@ declare(strict_types=1);
 namespace Mazepress\Core;
 
 use Mazepress\Core\Package;
-use Mazepress\Core\PluginInterface;
-use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Struct\PluginInterface;
 
 /**
  * The Package class.

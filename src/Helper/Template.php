@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Mazepress\Core\Helper;
 
-use Mazepress\Core\PackageInterface;
+use Mazepress\Core\Struct\PackageInterface;
 
 /**
  * The Template trait class.
@@ -48,7 +48,7 @@ trait Template {
 		foreach ( $templates as $template ) {
 			$located = self::locate_template( $package, $template );
 			if ( ! empty( $located ) ) {
-				require_once $located;
+				require $located;
 				break;
 			}
 		}
@@ -79,19 +79,11 @@ trait Template {
 			$parent_theme .= $parent_app->get_slug() . '/' . $package->get_slug();
 
 			if ( ! empty( $parent_app->get_path() ) ) {
-				$path    = trailingslashit( $parent_app->get_path() ) . $template_path . '/' . $package->get_slug();
-				$paths[] = $path;
+				$paths[] = trailingslashit( $parent_app->get_path() ) . $template_path . '/' . $package->get_slug();
 			}
 		} else {
 			$active_theme .= $package->get_slug();
 			$parent_theme .= $package->get_slug();
-
-			if ( ! empty( $package->get_path() ) ) {
-				$path = trailingslashit( $package->get_path() ) . $template_path;
-				if ( ! in_array( $path, $paths, true ) ) {
-					$paths[] = $path;
-				}
-			}
 		}
 
 		$paths[] = $active_theme;
@@ -107,7 +99,7 @@ trait Template {
 		 */
 		$paths = apply_filters( 'mazepress_core_locate_template', $paths );
 
-		$paths   = array_reverse( $paths );
+		$paths   = array_reverse( array_unique( $paths ) );
 		$located = '';
 
 		foreach ( $paths as $path ) {

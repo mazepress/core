@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Mazepress\Core;
 
-use Mazepress\Core\PackageInterface;
-use Mazepress\Core\ServiceProviderInterface;
+use Mazepress\Core\Struct\PackageInterface;
+use Mazepress\Core\Struct\ServiceProviderInterface;
 
 /**
  * The ServiceProvider class.
