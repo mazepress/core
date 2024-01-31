@@ -57,11 +57,6 @@ Install the [Composer](https://getcomposer.org/) dependency packages.
 composer install
 ```
 
-Install the [Node](https://nodejs.org) dependency packages.
-```shell
-npm install
-```
-
 ### CLI Commands
 Following are the available CLI commands tailored with this app development.
 

@@ -15,7 +15,6 @@ use Mazepress\Core\App;
 use Mazepress\Core\Package;
 use Mazepress\Core\Struct\PackageInterface;
 use Mazepress\Core\Message;
-use Mazepress\Core\Forms\Form;
 use WP_Mock;
 
 /**
@@ -49,13 +48,10 @@ class AppTest extends TestCase {
 	 * @return void
 	 */
 	public function test_init(): void {
-
 		$instance = App::instance();
 		$instance->init();
 		$this->assertInstanceOf( Message::class, $instance->message() );
 		$instance->init();
 		WP_Mock::assertHooksAdded();
-
-		$this->assertInstanceOf( Form::class, $instance->form() );
 	}
 }
