@@ -38,7 +38,6 @@ In your `composer.json` file:
 Finally, you can simply run the following command for updating the composer:
 
 ```sh
-# Update composer dependencies
 $ composer update
 ```
 
