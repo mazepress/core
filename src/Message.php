@@ -71,7 +71,7 @@ final class Message implements MessageInterface {
 	public function init(): self {
 
 		// Load the message from cookie.
-		add_action( 'template_redirect', array( self::$instance, 'load_message' ) );
+		\add_action( 'template_redirect', array( self::$instance, 'load_message' ) );
 
 		return $this;
 	}
@@ -200,7 +200,7 @@ final class Message implements MessageInterface {
 	private function create( string $message, string $code = 'warning' ): bool {
 		return $this->set_cookie(
 			$this->key,
-			wp_json_encode(
+			\wp_json_encode(
 				array(
 					'code'    => $code,
 					'message' => $message,

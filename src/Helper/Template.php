@@ -66,11 +66,11 @@ trait Template {
 
 		$paths         = array();
 		$template_path = 'templates';
-		$active_theme  = trailingslashit( get_stylesheet_directory() );
-		$parent_theme  = trailingslashit( get_template_directory() );
+		$active_theme  = \trailingslashit( \get_stylesheet_directory() );
+		$parent_theme  = \trailingslashit( \get_template_directory() );
 
 		if ( ! empty( $package->get_path() ) ) {
-			$paths[] = trailingslashit( $package->get_path() ) . $template_path;
+			$paths[] = \trailingslashit( $package->get_path() ) . $template_path;
 		}
 
 		if ( ! empty( $package->get_parent() ) ) {
@@ -79,7 +79,7 @@ trait Template {
 			$parent_theme .= $parent_app->get_slug() . '/' . $package->get_slug();
 
 			if ( ! empty( $parent_app->get_path() ) ) {
-				$paths[] = trailingslashit( $parent_app->get_path() ) . $template_path . '/' . $package->get_slug();
+				$paths[] = \trailingslashit( $parent_app->get_path() ) . $template_path . '/' . $package->get_slug();
 			}
 		} else {
 			$active_theme .= $package->get_slug();
@@ -97,13 +97,13 @@ trait Template {
 		 *
 		 * @param string[] $paths The arguments for the admin notice.
 		 */
-		$paths = apply_filters( 'mazepress_core_locate_template', $paths );
+		$paths = \apply_filters( 'mazepress_core_locate_template', $paths );
 
 		$paths   = array_reverse( array_unique( $paths ) );
 		$located = '';
 
 		foreach ( $paths as $path ) {
-			$file_path = trailingslashit( $path ) . $template;
+			$file_path = \trailingslashit( $path ) . $template;
 			if ( file_exists( $file_path ) ) {
 				$located = $file_path;
 				break;

@@ -59,8 +59,8 @@ abstract class ServiceProvider implements ServiceProviderInterface {
 
 		$vendor_path = 'packages';
 		$package     = $this->get_package();
-		$path        = trailingslashit( (string) $package->get_path() ) . $vendor_path;
-		$url         = trailingslashit( (string) $package->get_url() ) . $vendor_path;
+		$path        = \trailingslashit( (string) $package->get_path() ) . $vendor_path;
+		$url         = \trailingslashit( (string) $package->get_url() ) . $vendor_path;
 
 		foreach ( $this->get_packages() as $name => $class ) {
 
@@ -76,8 +76,8 @@ abstract class ServiceProvider implements ServiceProviderInterface {
 			// Cal the init function on the package.
 			if ( $instance instanceof PackageInterface ) {
 
-				$path = trailingslashit( $path ) . $instance->get_slug();
-				$url  = trailingslashit( $url ) . $instance->get_slug();
+				$path = \trailingslashit( $path ) . $instance->get_slug();
+				$url  = \trailingslashit( $url ) . $instance->get_slug();
 
 				$instance
 					->set_path( $path )
@@ -122,7 +122,7 @@ abstract class ServiceProvider implements ServiceProviderInterface {
 		$message = $this->get_package_missing_message( $name, $parent );
 
 		// Enqueue admin notice.
-		add_action(
+		\add_action(
 			'admin_notices',
 			function () use ( $message ) {
 				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

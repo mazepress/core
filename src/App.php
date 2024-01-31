@@ -11,6 +11,7 @@ namespace Mazepress\Core;
 
 use Mazepress\Core\Package;
 use Mazepress\Core\Helper\Template;
+use Mazepress\Core\Forms\Form;
 use Mazepress\Core\Message;
 
 /**
@@ -47,6 +48,13 @@ final class App extends Package {
 	 * @var Message|null $message
 	 */
 	protected $message = null;
+
+	/**
+	 * Instance for the Form class.
+	 *
+	 * @var Form|null $form
+	 */
+	protected $form = null;
 
 	/**
 	 * Loaded init function.
@@ -119,6 +127,20 @@ final class App extends Package {
 		}
 
 		return $this->message;
+	}
+
+	/**
+	 * Get the Form class instance
+	 *
+	 * @return Form
+	 */
+	public function form(): Form {
+
+		if ( is_null( $this->form ) ) {
+			$this->form = new Form();
+		}
+
+		return $this->form;
 	}
 
 	/**

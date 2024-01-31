@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Mazepress\Core\Tests\Helper;
 
-use WP_Mock;
 use WP_Mock\Tools\TestCase;
 use Mazepress\Core\Tests\Stubs\HelloWorld;
 
