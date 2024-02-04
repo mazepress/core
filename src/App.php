@@ -46,7 +46,7 @@ final class App extends Package {
 	 *
 	 * @var Message|null $message
 	 */
-	protected $message = null;
+	private $message = null;
 
 	/**
 	 * Loaded init function.

@@ -22,7 +22,7 @@ abstract class Plugin extends Package implements PluginInterface {
 	 *
 	 * @var string|null $description
 	 */
-	protected $description;
+	private $description;
 
 	/**
 	 * If an instance exists, returns it. If not, creates one and retuns it.
