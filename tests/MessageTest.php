@@ -93,7 +93,7 @@ class MessageTest extends TestCase {
 		$instance = Message::instance();
 		$message  = 'Error message';
 		$alert    = array(
-			'code'    => 'error',
+			'code'    => 'danger',
 			'message' => $message,
 		);
 
@@ -167,6 +167,8 @@ class MessageTest extends TestCase {
 
 		// Mock the $_COOKIE superglobal.
 		$_COOKIE['coremessage'] = json_encode( $alert );
+
+		WP_Mock::passthruFunction( 'wp_unslash' );
 
 		$instance->load_message();
 		$this->assertEquals( $message, $instance->get_message() );

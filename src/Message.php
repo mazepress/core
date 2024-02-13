@@ -66,14 +66,12 @@ final class Message implements MessageInterface {
 	/**
 	 * Load the alert message from cookie.
 	 *
-	 * @return self
+	 * @return void
 	 */
-	public function init(): self {
+	public function init(): void {
 
 		// Load the message from cookie.
 		\add_action( 'template_redirect', array( self::$instance, 'load_message' ) );
-
-		return $this;
 	}
 
 	/**
@@ -84,7 +82,7 @@ final class Message implements MessageInterface {
 	public function load_message(): self {
 
 		$cokkie = $this->get_cookie( $this->key );
-		$cokkie = ! empty( $cokkie ) ? json_decode( $cokkie, true ) : array();
+		$cokkie = ! empty( $cokkie ) ? json_decode( wp_unslash( $cokkie ), true ) : array();
 
 		if ( ! empty( $cokkie['code'] ) ) {
 			$this->set_code( $cokkie['code'] );
@@ -111,7 +109,9 @@ final class Message implements MessageInterface {
 			'message' => self::$instance->get_message(),
 		);
 
-		App::instance()->get_template_part( 'message', null, $args );
+		if ( ! empty( $args['message'] ) ) {
+			App::instance()->get_template_part( 'message', null, $args );
+		}
 	}
 
 	/**
@@ -133,7 +133,7 @@ final class Message implements MessageInterface {
 	 * @return bool
 	 */
 	public function error( string $message ): bool {
-		return $this->create( $message, 'error' );
+		return $this->create( $message, 'danger' );
 	}
 
 	/**

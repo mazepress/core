@@ -65,4 +65,28 @@ trait Cookie {
 	public static function get_cookie( string $name ): ?string {
 		return ( isset( $_COOKIE[ $name ] ) ) ? (string) $_COOKIE[ $name ] : null;
 	}
+
+	/**
+	 * Store the temporary data.
+	 *
+	 * @param array<mixed> $data The data.
+	 * @param string       $name The cookie name.
+	 *
+	 * @return void
+	 */
+	public static function set_session( array $data, string $name = 'tmpdata' ): void {
+		self::set_cookie( $name, wp_json_encode( $data ) );
+	}
+
+	/**
+	 * Get the temporary data.
+	 *
+	 * @param string $name The cookie name.
+	 *
+	 * @return array<mixed>
+	 */
+	public static function get_session( string $name = 'tmpdata' ): array {
+		$cookie = self::get_cookie( $name );
+		return ! empty( $cookie ) ? json_decode( wp_unslash( $cookie ), true ) : array();
+	}
 }
