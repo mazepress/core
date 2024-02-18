@@ -8,19 +8,20 @@
 
 namespace Mazepress\Core\Tests\Stubs;
 
-use Mazepress\Core\Plugin;
-use Mazepress\Core\Struct\PackageInterface;
-use Mazepress\Core\Helper\Template;
 use Mazepress\Core\Helper\Cookie;
-use Mazepress\Core\Tests\Stubs\WorldPackages;
+use Mazepress\Core\Helper\Email;
+use Mazepress\Core\Helper\Notice;
+use Mazepress\Plugin\BasePlugin;
+use Mazepress\Plugin\PluginInterface;
 
 /**
  * The HelloWorld class.
  */
-final class HelloWorld extends Plugin {
+final class HelloWorld extends BasePlugin {
 
-	use Template;
 	use Cookie;
+	use Email;
+	use Notice;
 
 	/**
 	 * The name.
@@ -67,35 +68,14 @@ final class HelloWorld extends Plugin {
 	/**
 	 * Initialize the package features.
 	 *
-	 * @param PackageInterface $package The package.
+	 * @param PluginInterface $package The package.
 	 *
 	 * @return void
 	 */
-	public static function init( PackageInterface $package = null ): void {
+	public static function init( PluginInterface $package = null ): void {
 
-		if ( is_null( $package ) ) {
-			$package = self::$instance;
-		}
-
-		// Load the dependent packages.
-		( new WorldPackages( $package ) )->load();
-
-		// ToDo - Register all classes.
 		// Call sample action.
 		add_action( 'example_action', function () {} );
-	}
-
-	/**
-	 * Initialize the package features.
-	 *
-	 * @param string       $slug The template slug.
-	 * @param string       $name The template name.
-	 * @param array<mixed> $args The additional arguments.
-	 *
-	 * @return void
-	 */
-	public static function get_template_part( string $slug, string $name = null, array $args = array() ): void {
-		self::get_template( self::$instance, $slug, $name, $args );
 	}
 
 	/**

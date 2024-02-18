@@ -2,8 +2,6 @@
 /**
  * The MessageTest class file.
  *
- * @phpcs:disable WordPress.WP.AlternativeFunctions.json_encode_json_encode
- *
  * @package    Mazepress\Core
  * @subpackage Tests
  */
@@ -12,9 +10,8 @@ declare(strict_types=1);
 
 namespace Mazepress\Core\Tests;
 
-use WP_Mock\Tools\TestCase;
 use Mazepress\Core\Message;
-use Mazepress\Core\Struct\MessageInterface;
+use WP_Mock\Tools\TestCase;
 use WP_Mock;
 
 /**
@@ -33,7 +30,6 @@ class MessageTest extends TestCase {
 
 		$instance = Message::instance();
 		$this->assertInstanceOf( Message::class, $instance );
-		$this->assertInstanceOf( MessageInterface::class, $instance );
 
 		$code = 'warning';
 		$this->assertInstanceOf( Message::class, $instance->set_code( $code ) );
@@ -59,94 +55,16 @@ class MessageTest extends TestCase {
 	}
 
 	/**
-	 * Test warning function.
-	 *
-	 * @runInSeparateProcess
-	 *
-	 * @return void
-	 */
-	public function test_warning(): void {
-
-		$instance = Message::instance();
-		$message  = 'Warning message';
-		$alert    = array(
-			'code'    => 'warning',
-			'message' => $message,
-		);
-
-		WP_Mock::userFunction( 'wp_json_encode' )
-			->with( $alert )
-			->andReturn( json_encode( $alert ) );
-
-		$this->assertTrue( $instance->warning( $message ) );
-	}
-
-	/**
 	 * Test error function.
 	 *
 	 * @runInSeparateProcess
 	 *
 	 * @return void
 	 */
-	public function test_error(): void {
+	public function test_create(): void {
 
 		$instance = Message::instance();
-		$message  = 'Error message';
-		$alert    = array(
-			'code'    => 'danger',
-			'message' => $message,
-		);
-
-		WP_Mock::userFunction( 'wp_json_encode' )
-			->with( $alert )
-			->andReturn( json_encode( $alert ) );
-
-		$this->assertTrue( $instance->error( $message ) );
-	}
-
-	/**
-	 * Test success function.
-	 *
-	 * @runInSeparateProcess
-	 *
-	 * @return void
-	 */
-	public function test_success(): void {
-
-		$instance = Message::instance();
-		$message  = 'Success message';
-		$alert    = array(
-			'code'    => 'success',
-			'message' => $message,
-		);
-
-		WP_Mock::userFunction( 'wp_json_encode' )
-			->with( $alert )
-			->andReturn( json_encode( $alert ) );
-
-		$this->assertTrue( $instance->success( $message ) );
-	}
-
-	/**
-	 * Test flash function.
-	 *
-	 * @return void
-	 */
-	public function test_flash(): void {
-
-		$instance = Message::instance()
-			->set_code( 'error' )
-			->set_message( 'Error message!' );
-
-		WP_Mock::userFunction( 'get_stylesheet_directory' )
-			->andReturn( 'theme' );
-
-		WP_Mock::userFunction( 'get_template_directory' )
-			->andReturn( 'child-theme' );
-
-		$instance::flash();
-
-		WP_Mock::assertActionsCalled();
+		$this->assertTrue( $instance->create( 'Warning message' ) );
 	}
 
 	/**
@@ -166,7 +84,7 @@ class MessageTest extends TestCase {
 		);
 
 		// Mock the $_COOKIE superglobal.
-		$_COOKIE['coremessage'] = json_encode( $alert );
+		$_COOKIE['coremessage'] = json_encode( $alert ); //phpcs:ignore WordPress.WP.AlternativeFunctions
 
 		WP_Mock::passthruFunction( 'wp_unslash' );
 

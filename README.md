@@ -21,11 +21,6 @@ In your `composer.json` file:
   "require": {
     "mazepress/core": "dev-main"
   },
-  "config": {
-    "preferred-install": {
-      "mazepress/core": "dist"
-    }
-  },
   "extra": {
     "installer-paths": {
       "packages/{$name}": [

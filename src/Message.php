@@ -11,13 +11,12 @@ declare(strict_types=1);
 namespace Mazepress\Core;
 
 use Mazepress\Core\App;
-use Mazepress\Core\Struct\MessageInterface;
 use Mazepress\Core\Helper\Cookie;
 
 /**
  * The Message trait class.
  */
-final class Message implements MessageInterface {
+final class Message {
 
 	use Cookie;
 
@@ -98,56 +97,6 @@ final class Message implements MessageInterface {
 	}
 
 	/**
-	 * Flash the message.
-	 *
-	 * @return void
-	 */
-	public static function flash(): void {
-
-		$args = array(
-			'code'    => self::$instance->get_code(),
-			'message' => self::$instance->get_message(),
-		);
-
-		if ( ! empty( $args['message'] ) ) {
-			App::instance()->get_template_part( 'message', null, $args );
-		}
-	}
-
-	/**
-	 * Create the warning alert.
-	 *
-	 * @param string $message The message.
-	 *
-	 * @return bool
-	 */
-	public function warning( string $message ): bool {
-		return $this->create( $message, 'warning' );
-	}
-
-	/**
-	 * Create the error alert.
-	 *
-	 * @param string $message The message.
-	 *
-	 * @return bool
-	 */
-	public function error( string $message ): bool {
-		return $this->create( $message, 'danger' );
-	}
-
-	/**
-	 * Create the success alert.
-	 *
-	 * @param string $message The message.
-	 *
-	 * @return bool
-	 */
-	public function success( string $message ): bool {
-		return $this->create( $message, 'success' );
-	}
-
-	/**
 	 * Get the code.
 	 *
 	 * @return string|null
@@ -192,15 +141,17 @@ final class Message implements MessageInterface {
 	/**
 	 * Create the alert message.
 	 *
+	 * @phpcs:disable WordPress.WP.AlternativeFunctions
+	 *
 	 * @param string $message The message.
 	 * @param string $code    The code.
 	 *
 	 * @return bool
 	 */
-	private function create( string $message, string $code = 'warning' ): bool {
+	public function create( string $message, string $code = 'warning' ): bool {
 		return $this->set_cookie(
 			$this->key,
-			\wp_json_encode(
+			json_encode(
 				array(
 					'code'    => $code,
 					'message' => $message,

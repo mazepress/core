@@ -10,11 +10,10 @@ declare(strict_types=1);
 
 namespace Mazepress\Core\Tests;
 
-use WP_Mock\Tools\TestCase;
 use Mazepress\Core\App;
-use Mazepress\Core\Package;
-use Mazepress\Core\Struct\PackageInterface;
-use Mazepress\Core\Message;
+use Mazepress\Plugin\BasePlugin;
+use Mazepress\Plugin\PluginInterface;
+use WP_Mock\Tools\TestCase;
 use WP_Mock;
 
 /**
@@ -31,8 +30,8 @@ class AppTest extends TestCase {
 
 		$instance = App::instance();
 		$this->assertInstanceOf( App::class, $instance );
-		$this->assertInstanceOf( Package::class, $instance );
-		$this->assertInstanceOf( PackageInterface::class, $instance );
+		$this->assertInstanceOf( BasePlugin::class, $instance );
+		$this->assertInstanceOf( PluginInterface::class, $instance );
 
 		// Define the regular expression for SemVer.
 		$semver = '/^\d+\.\d+\.\d+(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/';
@@ -49,8 +48,6 @@ class AppTest extends TestCase {
 	 */
 	public function test_init(): void {
 		$instance = App::instance();
-		$instance->init();
-		$this->assertInstanceOf( Message::class, $instance->message() );
 		$instance->init();
 		WP_Mock::assertHooksAdded();
 	}

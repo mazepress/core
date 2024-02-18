@@ -9,5 +9,4 @@ parameters:
 	excludePaths:
 		- packages
 		- vendor
-		- node_modules
 	ignoreErrors:

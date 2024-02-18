@@ -25,7 +25,7 @@ trait Cookie {
 	 *
 	 * @return bool
 	 */
-	public static function set_cookie( string $name, string $value, int $expire = 0, bool $secure = false ): bool {
+	public function set_cookie( string $name, string $value, int $expire = 0, bool $secure = false ): bool {
 
 		if ( headers_sent() ) {
 			return false;
@@ -44,7 +44,7 @@ trait Cookie {
 	 *
 	 * @return void
 	 */
-	public static function delete_cookie( string $name ): void {
+	public function delete_cookie( string $name ): void {
 
 		self::set_cookie( $name, '', -1 );
 
@@ -62,31 +62,35 @@ trait Cookie {
 	 *
 	 * @return string|null
 	 */
-	public static function get_cookie( string $name ): ?string {
+	public function get_cookie( string $name ): ?string {
 		return ( isset( $_COOKIE[ $name ] ) ) ? (string) $_COOKIE[ $name ] : null;
 	}
 
 	/**
 	 * Store the temporary data.
 	 *
+	 * @phpcs:disable WordPress.WP.AlternativeFunctions
+	 *
 	 * @param array<mixed> $data The data.
 	 * @param string       $name The cookie name.
 	 *
-	 * @return void
+	 * @return bool
 	 */
-	public static function set_session( array $data, string $name = 'tmpdata' ): void {
-		self::set_cookie( $name, wp_json_encode( $data ) );
+	public function set_session( array $data, string $name = 'tmpdata' ): bool {
+		return self::set_cookie( $name, json_encode( $data ) );
 	}
 
 	/**
 	 * Get the temporary data.
 	 *
+	 * @phpcs:disable WordPress.WP.AlternativeFunctions
+	 *
 	 * @param string $name The cookie name.
 	 *
 	 * @return array<mixed>
 	 */
-	public static function get_session( string $name = 'tmpdata' ): array {
+	public function get_session( string $name = 'tmpdata' ): array {
 		$cookie = self::get_cookie( $name );
-		return ! empty( $cookie ) ? json_decode( wp_unslash( $cookie ), true ) : array();
+		return ! empty( $cookie ) ? json_decode( $cookie, true ) : array();
 	}
 }

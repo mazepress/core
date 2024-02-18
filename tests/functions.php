@@ -29,3 +29,12 @@ function trailingslashit( string $value ): string {
 function untrailingslashit( string $value ): string {
 	return rtrim( $value, '/\\' );
 }
+
+/**
+ * Retrieves the timezone of the site as a DateTimeZone object.
+ *
+ * @return \DateTimeZone
+ */
+function wp_timezone(): \DateTimeZone {
+	return new DateTimeZone( 'UTC' );
+}

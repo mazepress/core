@@ -9,16 +9,13 @@ declare(strict_types=1);
 
 namespace Mazepress\Core;
 
-use Mazepress\Core\Package;
-use Mazepress\Core\Helper\Template;
 use Mazepress\Core\Message;
+use Mazepress\Plugin\BasePlugin;
 
 /**
  * The App class.
  */
-final class App extends Package {
-
-	use Template;
+final class App extends BasePlugin {
 
 	/**
 	 * The name.
@@ -40,20 +37,6 @@ final class App extends Package {
 	 * @var string
 	 */
 	const VERSION = '1.0.0';
-
-	/**
-	 * Instance for the Message class.
-	 *
-	 * @var Message|null $message
-	 */
-	private $message = null;
-
-	/**
-	 * Loaded init function.
-	 *
-	 * @var bool $loaded
-	 */
-	private static $loaded = false;
 
 	/**
 	 * Instance for this class.
@@ -83,42 +66,8 @@ final class App extends Package {
 	 */
 	public static function init(): void {
 
-		// Prevent duplicate call.
-		if ( self::$loaded ) {
-			return;
-		} else {
-			self::$loaded = true;
-		}
-
-		// Load message intance.
-		self::$instance->message()->init();
-	}
-
-	/**
-	 * Initialize the package features.
-	 *
-	 * @param string       $slug The template slug.
-	 * @param string       $name The template name.
-	 * @param array<mixed> $args The additional arguments.
-	 *
-	 * @return void
-	 */
-	public static function get_template_part( string $slug, string $name = null, array $args = array() ): void {
-		self::get_template( self::$instance, $slug, $name, $args );
-	}
-
-	/**
-	 * Get the Message class instance
-	 *
-	 * @return Message
-	 */
-	public function message(): Message {
-
-		if ( is_null( $this->message ) ) {
-			$this->message = Message::instance();
-		}
-
-		return $this->message;
+		// Iitialise message functions.
+		Message::instance()->init();
 	}
 
 	/**

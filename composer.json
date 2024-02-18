@@ -3,10 +3,17 @@
 	"type": "wordpress-plugin",
 	"description": "A package library for WordPress plugin and theme development.",
 	"license": "MIT",
+	"repositories": [
+        {
+            "type": "composer",
+            "url": "https://mazepress.github.io/packagist"
+        }
+    ],
 	"require": {
 		"php": "^7.4 | ^8.0",
 		"automattic/jetpack-autoloader": "^2.12",
-		"composer/installers": "^2.2"
+		"composer/installers": "^2.2",
+		"mazepress/plugin": "dev-main"
 	},
 	"require-dev": {
 		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
@@ -20,7 +27,7 @@
 	},
 	"scripts": {
 		"phpcs": "./vendor/bin/phpcs --standard=phpcs.xml",
-		"phpcbf": "./vendor/bin/phpcbf src tests",
+		"phpcbf": "./vendor/bin/phpcbf src tests templates",
 		"phpstan": "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit 2G",
 		"phpunit": "./vendor/bin/phpunit --configuration phpunit.xml",
 		"coverage": "./vendor/bin/code-coverage ./build/clover.xml 90",
