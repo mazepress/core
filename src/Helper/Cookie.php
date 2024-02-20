@@ -46,7 +46,7 @@ trait Cookie {
 	 */
 	public function delete_cookie( string $name ): void {
 
-		self::set_cookie( $name, '', -1 );
+		$this->set_cookie( $name, '', -1 );
 
 		if ( isset( $_COOKIE[ $name ] ) ) {
 			unset( $_COOKIE[ $name ] );
@@ -77,7 +77,7 @@ trait Cookie {
 	 * @return bool
 	 */
 	public function set_session( array $data, string $name = 'tmpdata' ): bool {
-		return self::set_cookie( $name, json_encode( $data ) );
+		return $this->set_cookie( $name, json_encode( $data ) );
 	}
 
 	/**
@@ -90,7 +90,7 @@ trait Cookie {
 	 * @return array<mixed>
 	 */
 	public function get_session( string $name = 'tmpdata' ): array {
-		$cookie = self::get_cookie( $name );
-		return ! empty( $cookie ) ? json_decode( $cookie, true ) : array();
+		$cookie = (string) $this->get_cookie( $name );
+		return (array) json_decode( stripslashes( $cookie ), true );
 	}
 }
