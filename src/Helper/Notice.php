@@ -54,19 +54,30 @@ trait Notice {
 	/**
 	 * Flash the message.
 	 *
+	 * @param bool $admin The admin notice flag.
+	 *
 	 * @return void
 	 */
-	public static function flash_notice(): void {
+	public static function flash_notice( bool $admin = false ): void {
 
 		$instance = Message::instance();
 
 		App::instance()->get_template_part(
 			'notice',
-			null,
+			( $admin ) ? 'admin' : null,
 			array(
 				'code'    => $instance->get_code(),
 				'message' => $instance->get_message(),
 			)
 		);
+	}
+
+	/**
+	 * Flash the admin message.
+	 *
+	 * @return void
+	 */
+	public static function flash_admin_notice(): void {
+		self::flash_notice( true );
 	}
 }

@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Mazepress\Core;
 
-use Mazepress\Core\App;
 use Mazepress\Core\Helper\Cookie;
 
 /**
@@ -70,15 +69,16 @@ final class Message {
 	public function init(): void {
 
 		// Load the message from cookie.
-		\add_action( 'template_redirect', array( self::$instance, 'load_message' ) );
+		\add_action( 'admin_init', array( self::instance(), 'load_message' ) );
+		\add_action( 'template_redirect', array( self::instance(), 'load_message' ) );
 	}
 
 	/**
 	 * Load the alert message from cookie.
 	 *
-	 * @return self
+	 * @return void
 	 */
-	public function load_message(): self {
+	public function load_message(): void {
 
 		$cokkie = $this->get_cookie( $this->key );
 		$cokkie = ! empty( $cokkie ) ? json_decode( wp_unslash( $cokkie ), true ) : array();
@@ -92,8 +92,6 @@ final class Message {
 		}
 
 		$this->delete_cookie( $this->key );
-
-		return $this;
 	}
 
 	/**
