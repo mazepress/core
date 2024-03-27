@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 					</td>
 				</tr>
 				<tr>
-					<td bgcolor="#ffffff" style="height:300px;vertical-align:top;padding:40px;background-color:#ffffff;color:#424242;line-height:1.5;font-size:1rem;font-family:-apple-system,blinkmacsystemfont,roboto,'Segoe UI',ubuntu,cantarell,'Helvetica Neue',sans-serif;border:1px solid #efefef;border-radius:8px;">
+					<td bgcolor="#ffffff" style="height:150px;vertical-align:top;padding:40px;background-color:#ffffff;color:#424242;line-height:1.5;font-size:1rem;font-family:-apple-system,blinkmacsystemfont,roboto,'Segoe UI',ubuntu,cantarell,'Helvetica Neue',sans-serif;border:1px solid #efefef;border-radius:8px;">
 						<?php
 						if ( ! empty( $args['body'] ) ) {
 							echo wp_kses_post( $args['body'] );
