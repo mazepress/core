@@ -13,7 +13,7 @@
 		"php": "^7.4 | ^8.0",
 		"automattic/jetpack-autoloader": "^2.12",
 		"composer/installers": "^2.2",
-		"mazepress/plugin": "dev-main"
+		"mazepress/plugin": "^1.0"
 	},
 	"require-dev": {
 		"phpcompatibility/phpcompatibility-wp": "^2.1.4",
@@ -48,7 +48,7 @@
 		}
 	},
 	"prefer-stable": true,
-	"minimum-stability": "dev",
+	"minimum-stability": "stable",
 	"config": {
 		"optimize-autoloader": true,
 		"sort-packages": true,

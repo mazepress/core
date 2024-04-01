@@ -1,6 +1,8 @@
 # MazePress - Core
 A custom package library for [WordPress](https://wordpress.org) Plugin and Theme development.
 
+[![Code Analysis](https://github.com/mazepress/core/actions/workflows/analyse.yml/badge.svg)](https://github.com/mazepress/core/actions/workflows/analyse.yml)
+
 ## Installation
 The simplest way to get up and running with this package is using [Composer](http://getcomposer.org/).
 In your `composer.json` file:
@@ -11,15 +13,16 @@ In your `composer.json` file:
 
 ```json
 {
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
+  "prefer-stable": true,
   "repositories": [
     {
-      "type": "vcs",
-      "url": "https://github.com/mazepress/core.git"
+      "type": "composer",
+      "url": "https://mazepress.github.io/packagist"
     }
   ],
   "require": {
-    "mazepress/core": "dev-main"
+    "mazepress/core": "^1.0"
   },
   "extra": {
     "installer-paths": {
