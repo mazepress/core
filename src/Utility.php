@@ -34,12 +34,18 @@ class Utility {
 	 *
 	 * @param string $date   The date string.
 	 * @param string $format The date current format.
+	 * @param bool   $usezone   Use the timezone.
 	 *
 	 * @return \DateTimeImmutable|null
 	 */
-	public static function parse_date( string $date, string $format = 'Y-m-d' ): ?\DateTimeImmutable {
+	public static function parse_date(
+		string $date,
+		string $format = 'Y-m-d',
+		bool $usezone = true
+	): ?\DateTimeImmutable {
 
-		$datetime = \DateTimeImmutable::createFromFormat( $format, $date, wp_timezone() );
+		$timezone = $usezone ? wp_timezone() : null;
+		$datetime = \DateTimeImmutable::createFromFormat( $format, $date, $timezone );
 		$result   = ( ! empty( $datetime ) && $datetime->format( $format ) === $date ) ? $datetime : null;
 
 		return $result;
