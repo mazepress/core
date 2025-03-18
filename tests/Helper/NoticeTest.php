@@ -85,6 +85,7 @@ class NoticeTest extends TestCase {
 			->andReturn( 'child-theme' );
 
 		$instance::flash_notice();
+		$instance::flash_admin_notice();
 
 		WP_Mock::assertActionsCalled();
 	}
